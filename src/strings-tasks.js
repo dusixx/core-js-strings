@@ -318,11 +318,7 @@ function containsSubstring(str, substring) {
  */
 function countVowels(str) {
   utils.throwIfNonString(str);
-
-  return [...str].reduce(
-    (sum, ch) => (/[aeiouy]/i.test(ch) ? sum + 1 : sum),
-    0
-  );
+  return str.split(/[aeiouy]/i).length - 1;
 }
 
 /**
