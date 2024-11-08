@@ -1,5 +1,13 @@
 module.exports = {
   root: true,
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
   env: {
     commonjs: true,
     es6: true,
