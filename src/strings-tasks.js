@@ -139,11 +139,9 @@ function removeTrailingWhitespaces(value) {
  */
 function repeatString(str, times) {
   utils.throwIfNonString(str);
-
   const count = Number(times);
-  if (count <= 0) return '';
 
-  return str.repeat(count);
+  return count > 0 ? str.repeat(count) : '';
 }
 
 /**
@@ -160,16 +158,9 @@ function repeatString(str, times) {
  */
 function removeFirstOccurrences(str, value) {
   utils.throwIfNonString(str);
-
   const occur = String(value);
-  const occurIdx = str.indexOf(occur);
 
-  return occurIdx < 0
-    ? str
-    : concatenateStrings(
-        str.slice(0, occurIdx),
-        str.slice(occurIdx + occur.length)
-      );
+  return utils.spliceStr(str, str.indexOf(occur), occur.length);
 }
 
 /**
@@ -186,16 +177,9 @@ function removeFirstOccurrences(str, value) {
  */
 function removeLastOccurrences(str, value) {
   utils.throwIfNonString(str);
-
   const occur = String(value);
-  const occurIdx = str.lastIndexOf(occur);
 
-  return occurIdx < 0
-    ? str
-    : concatenateStrings(
-        str.slice(0, occurIdx),
-        str.slice(occurIdx + occur.length)
-      );
+  return utils.spliceStr(str, str.lastIndexOf(occur), occur.length);
 }
 
 /**
@@ -334,10 +318,9 @@ function containsSubstring(str, substring) {
  */
 function countVowels(str) {
   utils.throwIfNonString(str);
-  const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
 
   return [...str].reduce(
-    (sum, ch) => (vowels.includes(ch.toLowerCase()) ? sum + 1 : sum),
+    (sum, ch) => (/[aeiouy]/i.test(ch) ? sum + 1 : sum),
     0
   );
 }
@@ -357,7 +340,7 @@ function countVowels(str) {
  */
 function isPalindrome(str) {
   utils.throwIfNonString(str);
-  const s = str.toLowerCase().replace(/[^a-z]/g, '');
+  const s = str.toLowerCase().replace(/[\W]/g, '');
 
   return s === reverseString(s);
 }
@@ -376,7 +359,7 @@ function isPalindrome(str) {
  */
 function findLongestWord(sentence) {
   utils.throwIfNonString(sentence);
-  const words = sentence.split(/[^a-z0-9]+/i);
+  const words = sentence.split(/[\W]+/i);
 
   return words.reduce(
     (longest, word) => (word.length > longest.length ? word : longest),
@@ -396,7 +379,7 @@ function findLongestWord(sentence) {
  */
 function reverseWords(str) {
   utils.throwIfNonString(str);
-  return str.replace(/[a-z0-9]+/gi, (word) => reverseString(word));
+  return str.replace(/[\w]+/gi, (word) => reverseString(word));
 }
 
 /**
@@ -413,7 +396,7 @@ function reverseWords(str) {
 function invertCase(str) {
   utils.throwIfNonString(str);
 
-  return str.replace(/[a-z0-9]+/gi, (word) =>
+  return str.replace(/[\w]+/gi, (word) =>
     word.replace(/./g, (ch) =>
       ch === ch.toUpperCase() ? ch.toLowerCase() : ch.toUpperCase()
     )
@@ -512,7 +495,7 @@ function encodeToRot13(str) {
   const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   const sub = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
 
-  return str.replace(/./g, (ch) => sub[alpha.indexOf(ch)] || ch);
+  return str.replace(/[a-z]/gi, (ch) => sub[alpha.indexOf(ch)] || ch);
 }
 
 /**
@@ -548,7 +531,6 @@ function getCardId(value) {
     'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
     'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'
   ];
-
   return cards.indexOf(value);
 }
 

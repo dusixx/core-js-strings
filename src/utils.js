@@ -11,9 +11,13 @@ const toggleCase = (v) => {
   return v === v.toUpperCase() ? v.toLowerCase() : v.toUpperCase();
 };
 
+const spliceStr = (str, startIdx, len) =>
+  startIdx < 0 ? str : str.slice(0, startIdx).concat(str.slice(startIdx + len));
+
 module.exports = {
   isStr,
   throwIfNonString,
   isMinOrSec,
   toggleCase,
+  spliceStr,
 };
