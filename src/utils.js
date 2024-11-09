@@ -1,6 +1,6 @@
 const isStr = (v) => Object.prototype.toString.call(v) === '[object String]';
 
-const throwIfNonString = (v) => {
+const throwIfNotString = (v) => {
   if (!isStr(v)) throw TypeError('String expected');
 };
 
@@ -16,7 +16,7 @@ const spliceStr = (str, startIdx, len) =>
 
 module.exports = {
   isStr,
-  throwIfNonString,
+  throwIfNotString,
   toggleCase,
   spliceStr,
   isPositiveInt,

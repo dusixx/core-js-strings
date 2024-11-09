@@ -56,7 +56,7 @@ function getStringLength(value) {
  *   concatenateStrings('', 'bb') => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  utils.throwIfNonString(value1);
+  utils.throwIfNotString(value1);
   return value1.concat(value2);
 }
 
@@ -72,7 +72,7 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  utils.throwIfNonString(value);
+  utils.throwIfNotString(value);
   return value.charAt(0);
 }
 
@@ -88,7 +88,7 @@ function getFirstChar(value) {
  *   removeLeadingAndTrailingWhitespaces('\t\t\tHello, World! ') => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-  utils.throwIfNonString(value);
+  utils.throwIfNotString(value);
   return value.trim();
 }
 
@@ -104,7 +104,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
 function removeLeadingWhitespaces(value) {
-  utils.throwIfNonString(value);
+  utils.throwIfNotString(value);
   return value.trimStart();
 }
 
@@ -120,7 +120,7 @@ function removeLeadingWhitespaces(value) {
  *   removeTrailingWhitespaces('\t\t\tHello, World! ') => '\t\t\tHello, World!'
  */
 function removeTrailingWhitespaces(value) {
-  utils.throwIfNonString(value);
+  utils.throwIfNotString(value);
   return value.trimEnd();
 }
 
@@ -138,7 +138,7 @@ function removeTrailingWhitespaces(value) {
  *   repeatString('abc', -2) => ''
  */
 function repeatString(str, times) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   const count = Number(times);
 
   return count > 0 ? str.repeat(count) : '';
@@ -157,7 +157,7 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   const occur = String(value);
 
   return utils.spliceStr(str, str.indexOf(occur), occur.length);
@@ -176,7 +176,7 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   const occur = String(value);
 
   return utils.spliceStr(str, str.lastIndexOf(occur), occur.length);
@@ -212,7 +212,7 @@ function sumOfCodes(str) {
  *   startsWith('Hello World', 'Hello') => true
  */
 function startsWith(str, substr) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   return str.startsWith(substr);
 }
 
@@ -228,7 +228,7 @@ function startsWith(str, substr) {
  *   endsWith('Hello World', 'Hello') => false
  */
 function endsWith(str, substr) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   return str.endsWith(substr);
 }
 
@@ -269,7 +269,7 @@ function formatTime(minutes, seconds) {
  *   reverseString('12345') => '54321'
  */
 function reverseString(str) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   return [...str].reverse().join('');
 }
 
@@ -285,7 +285,7 @@ function reverseString(str) {
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
 function orderAlphabetically(str) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   return [...str].sort((a, b) => a.localeCompare(b)).join('');
 }
 
@@ -302,7 +302,7 @@ function orderAlphabetically(str) {
  *   containsSubstring('12345', '34') => true
  */
 function containsSubstring(str, substring) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   return str.includes(substring);
 }
 
@@ -321,7 +321,7 @@ function containsSubstring(str, substring) {
  *   countVowels('XYZ') => 1
  */
 function countVowels(str) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   return str.split(/[aeiouy]/i).length - 1;
 }
 
@@ -339,7 +339,7 @@ function countVowels(str) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   const s = str.toLowerCase().replace(/[\W]/g, '');
 
   return s === reverseString(s);
@@ -358,7 +358,7 @@ function isPalindrome(str) {
  *   findLongestWord('No words here') => 'words'
  */
 function findLongestWord(sentence) {
-  utils.throwIfNonString(sentence);
+  utils.throwIfNotString(sentence);
   const words = sentence.split(/[\W]+/i);
 
   return words.reduce(
@@ -378,7 +378,7 @@ function findLongestWord(sentence) {
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
 function reverseWords(str) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   return str.replace(/[\w]+/gi, (word) => reverseString(word));
 }
 
@@ -394,7 +394,7 @@ function reverseWords(str) {
  *   invertCase('12345') => '12345'
  */
 function invertCase(str) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
 
   return str.replace(/[\w]+/gi, (word) =>
     word.replace(/./g, (ch) =>
@@ -431,7 +431,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  utils.throwIfNonString(value);
+  utils.throwIfNotString(value);
   const match = value.match(/(?<=\s)([^!]+)!\s*$/i);
 
   return match ? match[1].trim() : '';
@@ -449,7 +449,7 @@ function extractNameFromTemplate(value) {
  *   unbracketTag('<a>') => 'a'
  */
 function unbracketTag(str) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   return str.replace(/[<>]/g, '');
 }
 
@@ -469,7 +469,7 @@ function unbracketTag(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
   return str.split(/\s*;\s*/);
 }
 
@@ -490,12 +490,12 @@ function extractEmails(str) {
  *
  */
 function encodeToRot13(str) {
-  utils.throwIfNonString(str);
+  utils.throwIfNotString(str);
 
   const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  const sub = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  const cipher = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
 
-  return str.replace(/[a-z]/gi, (ch) => sub[alpha.indexOf(ch)] || ch);
+  return str.replace(/[a-z]/gi, (ch) => cipher[alpha.indexOf(ch)]);
 }
 
 /**
@@ -523,7 +523,7 @@ function encodeToRot13(str) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  utils.throwIfNonString(value);
+  utils.throwIfNotString(value);
   // prettier-ignore
   const cards = [
     'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
