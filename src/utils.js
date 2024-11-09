@@ -4,7 +4,7 @@ const throwIfNonString = (v) => {
   if (!isStr(v)) throw TypeError('String expected');
 };
 
-const isMinOrSec = (v) => Number.isInteger(v) && v < 60 && v >= 0;
+const isPositiveInt = (v) => Number.isInteger(v) && v >= 0;
 
 const toggleCase = (v) => {
   if (!isStr(v)) return v;
@@ -17,7 +17,7 @@ const spliceStr = (str, startIdx, len) =>
 module.exports = {
   isStr,
   throwIfNonString,
-  isMinOrSec,
   toggleCase,
   spliceStr,
+  isPositiveInt,
 };

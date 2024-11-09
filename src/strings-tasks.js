@@ -246,12 +246,16 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  if (!utils.isMinOrSec(minutes) || !utils.isMinOrSec(seconds))
-    throw TypeError('Invalid arguments');
+  let mins = Number(minutes);
+  let secs = Number(seconds);
 
-  return `${minutes}`
-    .padStart(2, '0')
-    .concat(':', `${seconds}`.padStart(2, '0'));
+  if (!utils.isPositiveInt(mins) || !utils.isPositiveInt(secs))
+    throw TypeError('Positive integer expected');
+
+  secs = `${seconds % 60}`;
+  mins = `${(minutes + (seconds - secs) / 60) % 60}`;
+
+  return `${mins.padStart(2, '0')}:${secs.padStart(2, '0')}`;
 }
 
 /**
